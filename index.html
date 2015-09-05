@@ -1,2 +1,106 @@
-Test
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
 
+<div>
+    <p>Это игра "Подбери синонимы"</p>
+</div>
+
+<div id="loginDiv" style="display: none">
+    <p></p>
+
+    <label for="playerName">Player name: </label>
+    <input type="text" id="playerName"/>
+
+    <label for="playerPassword">Password: </label>
+    <input type="text" id="playerPassword"/>
+    <button id="Login" onclick="gameInterface.checkLogin()">Login</button>
+    <!--  <button id="createNewPlayer" onclick="gameInterface.createNewPlayer()">Create new</button>   -->
+    <p id="loginMessage" style="=display: block"> Введите имя пользователя и пароль </p>
+</div>
+
+<div id="beginButtonDiv" style="display: none">
+    <p> Нажмите кнопку "Начать!" что бы увидеть слово</p>
+    <button id="Начать!" onclick="gameInterface.newGameRound()">Начать!</button>
+</div>
+
+<div id="gameLayoutDiv" style="display: none">
+
+    <p id="taskWord">Тут будет слово, для которого нужно подобрать синонимы</p>
+
+    <p>Время до окончания раунда:</p>
+    <p id="timer"></p>
+
+    <label for="playerInput">Вводите синонимы сюда</label>
+    <input type="text" id="playerInput" name="playerInputFiled">
+    <p id="Entered words">Entered words</p>
+    <button id="submit">Ввод</button>
+
+    <button id="stopRoundButton" onclick="gameController.endRoundButton()">
+        Break round (round results will not be saved)</button>
+
+</div>
+
+<div id="optionsButtonDiv">
+    <button id="optionsButton" onclick="gameInterface.optionsButton()">Options</button>
+</div>
+
+<div id="optionsLayoutDiv" style="display: none">
+
+    <p>Options</p>
+    <p>Please select type of game</p>
+
+    <form>
+        <input type="radio" name="gameType" value="notPlayed" checked> Only not played before
+        <br>
+        <input type="radio" name="gameType" value="onlyPlayed"> Only played
+        <br>
+        <input type="radio" name="gameType" value="all" checked> All
+        <br>
+        <input type="radio"  name="gameType" value="onlyFailed"> Only failed. The word will be replayed
+        if its result was less than
+        <input id="successLevel" type="range" onchange="view.updateSuccessLevelNumericValue()"
+               oninput="view.updateSuccessLevelNumericValue()">
+        <p id="successLevelNumericValue"></p>
+        <br>
+
+    </form>
+
+    <button id="optionsSubmit" onclick="gameInterface.optionSetGameTypeConfirmButton()">Confirm</button>
+
+    <button id="exitOptions" onclick="gameController.exitOptionsButton()">Exit Options</button>
+
+</div>
+
+<div id="extrasDiv" style="display: none">
+
+    <p>Extras</p>
+    <button id="viewWordsResults">View words results</button>
+
+    <button id="returnToGame" onclick="gameInterface.newGameRound()">New round</button>
+    <button id="closeExtrasDiv" onclick="gameInterface.closeExtrasDiv()">Close Options</button>
+
+    <button id="viewStatisticsButton" onclick="gameInterface.viewStatistics()">View statistics</button>
+
+</div>
+
+<div id="outputDiv">
+    <p id="output"></p>
+</div>
+
+<div id="statusDiv" style="width:300px;height:150px;background-color: beige; overflow:hidden;">
+    <p>Status messages:</p>
+    <p id="statusOutput"></p>
+</div>
+
+
+
+
+<script src="main.js"></script>
+</body>
+</html>
